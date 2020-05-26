@@ -1,5 +1,6 @@
 <template>
-  <v-container class="main_container" v-if="loaded">
+<div style="width:100%;height:100%;">
+  <v-container class="main_container" v-if="!loading">
     <div class="background" :style="background"></div>
     <div class="abs_child">
       <v-slider v-model="current_step" :step="wordcloud.length" ticks="always" thumb-label="always" :max="(wordcloud.length-1)*10">
@@ -7,6 +8,27 @@
       </v-slider>
     </div>
   </v-container>
+      <v-dialog
+      v-model="loading"
+      hide-overlay
+      persistent
+      width="300"
+    >
+      <v-card
+        color="primary"
+        dark
+      >
+        <v-card-text>
+          Please stand by...
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+</div>
 </template>
 
 <script>
@@ -25,19 +47,16 @@ export default {
           };
         })
         .sort(compare);
-      console.log(self.wordcloud);
-      self.loaded = true
+      self.loading = false
     });
   },
   data: () => ({
-    loaded: false,
+    loading: true,
     wordcloud: [],
     current_step: 0
   }),
   computed: {
     background() {
-      console.log(this.wordcloud[this.current_step/10])
-      console.log("background: url('https://files.de-1.osf.io/v1/resources/vej5u/providers/osfstorage/"+this.wordcloud[this.current_step/10]['id']+"') no-repeat center center;")
       return "background: url('https://files.de-1.osf.io/v1/resources/vej5u/providers/osfstorage/"+this.wordcloud[this.current_step/10]['id']+"') no-repeat center center;"
     }
   },

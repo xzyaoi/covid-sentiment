@@ -5,7 +5,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
+      <v-btn href="https://blog.yaonotes.org/2020/05/22/covid-twitter/" target="_blank" text>
         <span class="mr-2">About</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
