@@ -33,6 +33,7 @@ def wrap_crawl(start):
         start_time = start + datetime.timedelta(hours=i)
         end_time = start_time + datetime.timedelta(hours=1)
         crawl(start_date, start_time, end_time)
+    print("I've finished all crawling")
 
 def main():
     today = datetime.datetime.utcnow().date() - datetime.timedelta(days=1)

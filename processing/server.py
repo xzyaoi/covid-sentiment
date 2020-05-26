@@ -1,11 +1,12 @@
 import os
-from quart import Quart, request
+from flask import Flask, request
 from werkzeug.utils import secure_filename
 from requests import get
+from sentiment import wrapper
 import re
 import threading
-import rfc6266
-app = Quart(__name__)
+
+app = Flask(__name__)
 
 def background_task(url, filename):
     download(url, filename)
@@ -19,14 +20,15 @@ def download(url, filename):
         # write to file
         file.write(response.content)
     print("Downloaded!")
+    print("Now calls sentiment and wordcloud module...")
+    wrapper(target)
+
 
 @app.route('/receive', methods=['POST'])
-async def foo():
-    data = await request.form
+def foo():
+    data = request.form
     url = data['link']
     filename = data['filename']
     x = threading.Thread(target=background_task, args=(url,filename,))
     x.start()
     return data
-
-app.run("0.0.0.0", port=5000)
