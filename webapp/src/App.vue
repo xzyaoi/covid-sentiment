@@ -1,60 +1,49 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+  <v-app :style="main_style">
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">COVID-19 Sentiment Analysis</div>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
+      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
+        <span class="mr-2">About</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <Main />
     </v-content>
+
+    <v-footer dark padless>
+      <v-card class="flex" flat tile>
+        <v-card-title class="primary lighten-1">
+          <strong class="subheading">United we stand, divided we fall. - Aesop</strong>
+
+          <v-spacer></v-spacer>
+        </v-card-title>
+
+        <v-card-text class="py-2 white--text text-center">
+          {{ new Date().getFullYear() }} —
+          <strong>Sentiment Analysis Team</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import Main from "./components/Main";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    Main
   },
 
   data: () => ({
-    //
-  }),
+    main_style:"opacity:0.4; background: url('https://ndownloader.figshare.com/files/22793075/preview/22793075/preview.jpg') no-repeat center center;" 
+  })
 };
 </script>
