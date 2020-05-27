@@ -1,17 +1,20 @@
 import Papa from 'papaparse'
 
 function load_data(objectId) {
-    const url = 'https://files.de-1.osf.io/v1/resources/vej5u/providers/osfstorage/'+objectId
+    console.log(objectId)
+    objectId = '5-24'
+    const url = 'https://raw.githubusercontent.com/xzyaoi/covid-sentiment/master/data/'+objectId+'.csv'
     return new Promise((resolve, reject)=>{
         Papa.parse(url, {
             download: true,
             error: function (err, file, inputElem, reason) {
                 const message = 'error csv downloader & parser: ' + reason;
-                console.error(message);
+                console.log(message);
                 reject(message);
             },
             complete: function(results) {
-                resolve(results)
+                let data = results.data
+                resolve(data.slice(1, data.length))
             },
         })
     })
