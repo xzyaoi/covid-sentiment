@@ -3,8 +3,8 @@
   <v-container class="main_container" v-if="!loading">
     <div class="background" :style="background"></div>
     <div class="abs_child">
-      <v-slider v-model="current_step" :step="wordcloud.length" ticks="always" thumb-label="always" :max="(wordcloud.length-1)*10">
-        <template v-slot:thumb-label="{ value }">{{ wordcloud[(value/10)].date }}</template>
+      <v-slider v-model="current_step" step="1" ticks="always" thumb-label="always" :max="wordcloud.length-1">
+        <template v-slot:thumb-label="{ value }">{{ wordcloud[value].date }}</template>
       </v-slider>
     </div>
   </v-container>
@@ -47,6 +47,7 @@ export default {
           };
         })
         .sort(compare);
+      console.log(self.wordcloud)
       self.loading = false
     });
   },
@@ -57,7 +58,7 @@ export default {
   }),
   computed: {
     background() {
-      return "background: url('https://files.de-1.osf.io/v1/resources/vej5u/providers/osfstorage/"+this.wordcloud[this.current_step/10]['id']+"') no-repeat center center;"
+      return "background: url('https://files.de-1.osf.io/v1/resources/vej5u/providers/osfstorage/"+this.wordcloud[this.current_step]['id']+"') no-repeat center center;"
     }
   },
   methods: {
