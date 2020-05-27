@@ -33,32 +33,35 @@
 
 <script>
 import { compare } from "../service/datecompare";
-import { fetch_wordcloud_files } from "../service/api";
+import { fetch_wordcloud_files, fetch_emotion_files } from "../service/api";
+import { load_data } from '../service/dataloader'
 export default {
   name: "Main",
   mounted() {
     let self = this;
     fetch_wordcloud_files().then(function(res) {
-      self.wordcloud = res
-        .map(function(each) {
-          return {
-            date: each.date,
-            id: each.id
-          };
-        })
-        .sort(compare);
-      console.log(self.wordcloud)
+      self.wordcloud = res.sort(compare);
       self.loading = false
     });
   },
   data: () => ({
     loading: true,
     wordcloud: [],
+    emotions:[],
     current_step: 0
   }),
   computed: {
     background() {
       return "background: url('https://files.de-1.osf.io/v1/resources/vej5u/providers/osfstorage/"+this.wordcloud[this.current_step]['id']+"') no-repeat center center;"
+    }
+  },
+  watch: {
+    current_step(newVal) {
+      self.loading = true
+      console.log(newVal)
+      load_data(this.emotions[0].id).then(function(res) {
+        console.log(res)
+      })
     }
   },
   methods: {
