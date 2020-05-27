@@ -1,8 +1,7 @@
 <template>
   <div style="width:100%;height:100%;">
     <v-container class="main_container" v-if="!loading">
-      <div class="background" :style="background"></div>
-      <div>
+      <div class="background" :style="background">
         <div id="main_plot"></div>
         <v-slider
           class="abs_child"
@@ -39,6 +38,7 @@ export default {
     fetch_wordcloud_files().then(function(res) {
       self.wordcloud = res.sort(compare);
       self.loading = false;
+      self.plot('https://raw.githubusercontent.com/xzyaoi/covid-sentiment/master/data/5-24.csv')
     });
   },
   data: () => ({
@@ -48,15 +48,6 @@ export default {
     current_step: 0,
     layout: {
       autosize: true,
-      width: 1500,
-      height: 500,
-      margin: {
-        l: 50,
-        r: 50,
-        b: 100,
-        t: 100,
-        pad: 4
-      },
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)"
     }
@@ -98,7 +89,7 @@ export default {
             name: "Hapiness",
             x: unpack(rows, "time"),
             y: unpack(rows, "happy"),
-            line: { color: "red" }
+            line: { color: "#B5495B" }
           };
           var bad = {
             type: "scatter",
@@ -106,7 +97,7 @@ export default {
             name: "Bad",
             x: unpack(rows, "time"),
             y: unpack(rows, "bad"),
-            line: { color: "black" }
+            line: { color: "#26453D" }
           };
           var polarity = {
             type: "scatter",
@@ -114,7 +105,7 @@ export default {
             name: "Polarity",
             x: unpack(rows, "time"),
             y: unpack(rows, "polarity"),
-            line: { color: "blue" }
+            line: { color: "#268785" }
           };
           var encouraged = {
             type: "scatter",
@@ -122,7 +113,7 @@ export default {
             name: "Encouraged",
             x: unpack(rows, "time"),
             y: unpack(rows, "encouraged"),
-            line: { color: "blue" }
+            line: { color: "#FFB11B" }
           };
           var data = [happiness, bad, polarity, encouraged];
 
@@ -137,24 +128,24 @@ export default {
 .main_container {
   min-width: 100%;
   height: 100%;
+  display:flex;
   text-align: center;
   align-items: center;
 }
-.abs_child {
-  display: flex;
-  margin-top: -150px;
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
 .background {
-  min-width: 100%;
-  min-height: 100%;
-  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 #main_plot {
-  margin-top: -50%;
-  margin-left: auto;
-  margin-right: auto;
+  background: rgba(255,255,255,0.8);
+  width: 95%;
+  margin-top: 20px;
+}
+.abs_child {
+  width: 95%;
 }
 </style>
