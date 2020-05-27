@@ -76,14 +76,15 @@ export default {
   align-items: center;
 }
 .abs_child {
-  position: absolute;
   display: flex;
   margin-top: -100px;
-  width: 80%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .background {
   min-width: 100%;
   min-height: 100%;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 </style>
