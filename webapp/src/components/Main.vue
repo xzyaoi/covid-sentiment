@@ -72,9 +72,7 @@ export default {
   },
   watch: {
     current_step(newVal) {
-      console.log(newVal)
-      let objectId = '5-24'
-      this.plot('https://raw.githubusercontent.com/xzyaoi/covid-sentiment/master/data/'+objectId+'.csv')
+      this.plot('https://raw.githubusercontent.com/xzyaoi/covid-sentiment/master/data/'+this.wordcloud[newVal].date+'.csv')
     }
   },
   methods: {
