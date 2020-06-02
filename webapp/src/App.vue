@@ -24,7 +24,7 @@
 
         <v-card-text class="py-2 white--text text-center">
           {{ new Date().getFullYear() }} —
-          <strong>Yingying Chen, Songyi Han, <a href="https://blog.yaonotes.org">Xiaozhe Yao</a></strong>
+          <strong>Yingying Chen, <a href="https://blog.yaonotes.org">Xiaozhe Yao</a></strong>
         </v-card-text>
       </v-card>
     </v-footer>
