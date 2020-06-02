@@ -38,7 +38,7 @@ export default {
     fetch_wordcloud_files().then(function(res) {
       self.wordcloud = res.sort(compare);
       self.loading = false;
-      self.plot('https://raw.githubusercontent.com/xzyaoi/covid-sentiment/master/data/5-24.csv')
+      self.plot('https://raw.githubusercontent.com/xzyaoi/covid-sentiment/master/data/'+self.wordcloud[0].date+'.csv')
     });
   },
   data: () => ({
@@ -114,7 +114,7 @@ export default {
             line: { color: "#FFB11B" }
           };
           var data = [happiness, bad, polarity, encouraged];
-
+  
           Plotly.newPlot("main_plot", data, self.layout);
         }
       );
