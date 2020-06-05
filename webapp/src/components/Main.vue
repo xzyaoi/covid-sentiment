@@ -113,7 +113,31 @@ export default {
             y: unpack(rows, "encouraged"),
             line: { color: "#FFB11B" }
           };
-          var data = [happiness, bad, polarity, encouraged];
+          var depressed = {
+            type: "scatter",
+            mode: "lines",
+            name: "Depressed",
+            x: unpack(rows, "time"),
+            y: unpack(rows, "depressed"),
+            line: { color: "#005CAF" }
+          };
+          var joy = {
+            type: "scatter",
+            mode: "lines",
+            name: "Joy",
+            x: unpack(rows, "time"),
+            y: unpack(rows, "joy"),
+            line: { color: "yellow" }
+          };
+          var loving = {
+            type: "scatter",
+            mode: "lines",
+            name: "Loving",
+            x: unpack(rows, "time"),
+            y: unpack(rows, "loving"),
+            line: { color: "#E03C8A" }
+          };
+          var data = [polarity, bad, depressed,  encouraged, happiness,joy, loving];
   
           Plotly.newPlot("main_plot", data, self.layout);
         }
